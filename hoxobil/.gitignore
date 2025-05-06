@@ -1,0 +1,29 @@
+# Ignore the .env file (which contains sensitive information)
+hoxobil/.env
+
+# Ignore the virtual environment folder (this folder contains your dependencies)
+env/
+
+# Ignore Python bytecode files (they’re generated automatically and not needed)
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore Django migration folders (only relevant for local development)
+*/migrations/
+
+# Ignore database file (SQLite database file)
+db.sqlite3
+
+# Ignore media and static files (adjust based on your project)
+media/
+static/
+
+# Ignore log files (log files should not be tracked)
+*.log
+
+# Ignore system files created by macOS (if you're on a Mac)
+.DS_Store
+
+# Ignore settings folder for VS Code (if using VS Code editor)
+.vscode/
