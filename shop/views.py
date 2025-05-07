@@ -9,7 +9,7 @@ def home(request):
 
 def fetch_printify_products(request):
     """Fetch products from Printify"""
-    shop_id = 'YOUR_SHOP_ID'  # Replace with actual ID
+    shop_id = '18789476'  # Replace with actual ID
     products = get_printify_products(shop_id)
     return JsonResponse(products)
 
@@ -31,3 +31,6 @@ def create_printify_product_view(request):
 
     response = create_printify_product(shop_id, product_data)
     return JsonResponse(response)
+
+def printify_products_view(request):
+    return JsonResponse({'message': 'Printify products will go here soon!'})

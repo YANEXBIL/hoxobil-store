@@ -9,16 +9,20 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from decouple import config
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-PRINTIFY_API_TOKEN = os.getenv("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzN2Q0YmQzMDM1ZmUxMWU5YTgwM2FiN2VlYjNjY2M5NyIsImp0aSI6ImM3YmY5ZjFkYjcwY2JjYTIzZjkxZThmOTQwMTQyOWFjYmQ1ZDEwYjdjNDc4OGYzODY2YTA3ZWQyNmQ2Y2VkZWI1Nzg4N2JmYmJhNTkzZTFiIiwiaWF0IjoxNzQ2NTIyODc3LjA5NjcwNiwibmJmIjoxNzQ2NTIyODc3LjA5NjcwNywiZXhwIjoxNzc4MDU4ODc3LjA5MTI4Niwic3ViIjoiMTAzOTgwOTYiLCJzY29wZXMiOlsic2hvcHMubWFuYWdlIiwic2hvcHMucmVhZCIsImNhdGFsb2cucmVhZCIsIm9yZGVycy5yZWFkIiwib3JkZXJzLndyaXRlIiwicHJvZHVjdHMucmVhZCIsInByb2R1Y3RzLndyaXRlIiwid2ViaG9va3MucmVhZCIsIndlYmhvb2tzLndyaXRlIiwidXBsb2Fkcy5yZWFkIiwidXBsb2Fkcy53cml0ZSIsInByaW50X3Byb3ZpZGVycy5yZWFkIiwidXNlci5pbmZvIl19.Bmt3GIvO9jfN7krOIFRTl-zbIo6zCYSp7r801WWBnzF1ELbDVF9StdoZdxG_XPuzYgM9KrKuTE-7MgxHF3KJ8o4kFIOJy07b0W0tjOtwckjTP-u67lEyQOQ8013Gm1e2lGv7fhQ11NOnpbwGlQ6bKKojenYLX9BT778Ror_W12nK_XjX1k90XanTFSOdt2mvEIevdTTutFo_lI1XJNBDEt0XWS1W6Ck1fxKWo2soVa80c-4Mcn3pqBozP_THujHrQ1PG6aNr2ct9YCDTv6hqDlQankSEvo_343RZtPKlLkbrBlhAQImHiTEqmm_jipuzo_8T20ihPW__EGc1Zix6yeG7eUy7lh2QSd8WgTAaMTfIrWkq2RUAw5ujwHE7ONpaKmqUke0x3yyt8ry3Cxapubnftx4OjGfhRpi82RZD_UHjForYnWeHBG13QVfMDQPKwmy9nLCgiLB-zPIkLaa29xaapKh1bxFctYq6OoFeaW-7-eJtsF4svhZf6Aw7g6R5Kgmi0-Bct2GUfj93mMP1CWxNsBVsKMKkJCFaT0mLzXMzalUe6ZQhXqPvx-_MEvjO9p-WejoUMP6NY5zAWhBJREx-hDQe2chGobz1GlkUKOBgYMjryFLSvHjnlIvPwfmeQ3P4inHM0E5yfAe4ozIxhU2Q-foqbHuusjhUBsXR5nA") 
-
-load_dotenv()
+# Retrieve the PRINTIFY_API_TOKEN from environment variables
+PRINTIFY_API_TOKEN = config('PRINTIFY_API_TOKEN')
+print(PRINTIFY_API_TOKEN)  # This is just for testing if it's loading correctly
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -31,9 +35,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'shop',
+    'shop',  # Add your custom app here
 ]
 
 MIDDLEWARE = [
@@ -74,10 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hoxobil.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Database configuration (SQLite for development)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,10 +84,7 @@ DATABASES = {
     }
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -104,28 +100,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
+# Internationalization settings
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Media files (user-uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

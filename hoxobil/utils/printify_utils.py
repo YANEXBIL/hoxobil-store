@@ -1,9 +1,7 @@
 import requests
 from django.conf import settings
-from hoxobil.utils.printify_utils import create_printify_product, get_printify_products
 
-
-
+# Define the base URL for the Printify API
 PRINTIFY_API_URL = "https://api.printify.com/v1"
 
 def get_printify_products(shop_id):
